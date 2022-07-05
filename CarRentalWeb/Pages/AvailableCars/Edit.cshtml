@@ -1,0 +1,127 @@
+﻿@page
+@model CarRentalWeb.Pages.AvailableCars.EditModel
+
+
+<form method="post">
+	<input hidden asp-for="Category.CarId"/>
+	<div class=”container-fluid border p-6 mt-2”>
+		<div class="row">
+			<h3>Add new car to the system</h3>
+		</div>
+		
+		<style>
+			#pbar {
+			width:auto;
+			height:20px;
+			border-style:solid;
+			border-width:1px;
+			border-color:#000000;
+			}
+			#innerPbar {
+				width:0px;
+				height:20px;
+				background-color:#7CFC00;
+			}
+		</style>
+
+		<div id="pbar">
+			<div id="innerPbar"></div>
+		</div>
+
+		<br/>
+
+		<div class="input-group-lg ">
+			<label asp-for="Category.CarModel"></label>
+			<span asp-validation-for="Category.CarModel" class="text-danger"></span>
+			<select asp-for="Category.CarModel" class="form-select border" weight="25" onBlur="updateProg(this)">
+				<option value= >Choose one model:</option>
+				<option value="Audi">Audi</option>
+				<option value="Mercedes-Benz">Mercedes-Benz</option>
+				<option value="Hyundai">Hyundai</option>
+				<option value="Honda">Honda</option>
+				<option value="Nissan">Nissan</option>
+				<option value="Volkswagen">Volkswagen</option>
+			</select>
+			
+		</div>
+
+		<div class="input-group-lg ">
+			<label asp-for="Category.CarColor"></label>
+			<span asp-validation-for="Category.CarColor" class="text-danger"></span>
+			<select asp-for="Category.CarColor" class="form-select border" weight="25" onBlur="updateProg(this)">
+				<option value= >Choose one color:</option>
+				<option class="bg-danger text-white" value="Red">Red</option>
+				<option class="bg-primary text-white" value="Blue">Blue</option>
+				<option class="bg-success text-white" value="Green">Green</option>
+				<option class="bg-warning text-white" value="Yellow">Yellow</option>
+				<option class="text-white" value="White">White</option>
+				<option class="bg-dark text-white" value="Black">Black</option>
+			</select>
+		</div>
+
+		<div>
+			<label asp-for="Category.CarAge"></label>
+			<input asp-for="Category.CarAge"  class="form-control"  onBlur="updateProg(this);" weight="25" >
+			<span asp-validation-for="Category.CarAge" class="text-danger"></span>
+		</div>
+		<div>
+			<label asp-for="Category.CarKilometres"></label>
+			<input asp-for="Category.CarKilometres"  class="form-control" weight="25" onBlur="updateProg(this);">
+			<span asp-validation-for="Category.CarKilometres" class="text-danger"></span>
+		</div>
+		<br />
+		<div class="row">
+			<button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle-dotted"></i>&nbsp Edit</button>
+			<a asp-page="Index" class="btn btn-secondary">Go back to Index page</a>
+		</div>
+	</div>
+
+</form>
+
+@section Scripts
+{
+	@{
+		<partial name="_ValidationScriptsPartial"/>
+
+	}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
+	@* <script>
+		var dp= $("#datepicker").datepicker({
+			format: "yyyy",
+			viewMode: "years", 
+			minViewMode: "years",
+			autoclose:true
+		});
+
+		dp.on('changeYear', function (e) {    
+			updateProg(this)
+		});   
+	</script> *@
+
+	<script>
+		var progress = new Number(0);
+		function once updateProg(element) {
+			var weight = element.attributes.weight.value;
+			if (element.value.length > 0 || element.checked) {
+				progress += new Number(weight);
+			}
+			else {
+				progress -= new Number(weight);
+			}
+			if(progress > 100) { progress = 100; }
+			if(progress < 0) { progress = 0; }
+			bar = document.getElementById("innerPbar");
+			bar.style.width = progress+"%";
+			bar.innerHTML = progress +"%";
+		}
+	</script>
+
+	
+
+
+}
+
+

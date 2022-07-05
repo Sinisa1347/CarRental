@@ -1,0 +1,67 @@
+﻿@page
+@model CarRentalWeb.Pages.AvailableCars.DeleteModel
+
+
+<form method="post">
+	<input hidden asp-for="Category.CarId"/>
+	<div class=”container-fluid border p-6 mt-2”>
+		<div class="row">
+			<h3>Add new car to the system</h3>
+		</div>
+		
+		<style>
+			#pbar {
+			width:auto;
+			height:20px;
+			border-style:solid;
+			border-width:1px;
+			border-color:#000000;
+			}
+			#innerPbar {
+				width:0px;
+				height:20px;
+				background-color:#7CFC00;
+			}
+		</style>
+
+		<div id="pbar">
+			<div id="innerPbar"></div>
+		</div>
+
+		<br/>
+
+		<div class="input-group-lg ">
+			<label asp-for="Category.CarModel"></label>
+			<input disabled asp-for="Category.CarModel" class="form-select border">
+			</input>
+			
+		</div>
+
+		<div class="input-group-lg ">
+			<label asp-for="Category.CarColor"></label>
+			<input disabled  asp-for="Category.CarColor" class="form-select border"></select>
+		</div>
+
+		@*id="datepicker"*@
+
+		<div>
+			<label asp-for="Category.CarAge"></label>
+			<input disabled asp-for="Category.CarAge" class="form-control" >
+
+		</div>
+		<div>
+			<label asp-for="Category.CarKilometres"></label>
+			<input disabled asp-for="Category.CarKilometres" class="form-control">
+
+		</div>
+		<br />
+		<div class="row">
+			<button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle-dotted"></i>&nbsp Delete</button>
+			<a asp-page="Index" class="btn btn-secondary">Go back to Index page</a>
+		</div>
+	</div>
+
+</form>
+
+
+

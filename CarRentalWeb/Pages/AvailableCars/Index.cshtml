@@ -1,0 +1,62 @@
+﻿@page
+@model CarRentalWeb.Pages.Available_Cars.IndexModel
+@{
+}
+
+
+<div class="container p-6">
+    <div class="row">
+        <div class="col-6 text-dark">
+            <h1>Available cars</h1>
+        </div>
+
+        <div class="col-6 position-relative ">
+            <a asp-page="create" button type="button" class="btn btn-outline-primary btn-lg btn-block text-right position-absolute top-0 end-0">Add new car</a>
+                <br />
+        </div>
+
+    </div>
+    <br />
+
+    <table class="table table-bordered table-hover 
+    table-striped table-responsive mw-100 mh-100">
+        <thead>
+            <tr>
+                <th>Car model</th>
+                <th>Car color</th>
+                <th>Car age</th>
+                <th>Kilometers in a car</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>@category.CarModel</td>
+                    <td>@category.CarColor</td>
+                    <td>@category.CarAge</td>
+                    <td>@category.CarKilometres</td>
+
+                    <td>
+                        
+                        <div class="btn btn-group">
+                            <a asp-page="Edit" asp-route-id="@category.CarId">
+                                <i class="bi bi-pen">EDIT</i>
+                            </a>
+                            
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn btn-group">
+                            <a asp-page="Delete" asp-route-id="@category.CarId">
+                                <i class="bi bi-folder-x">DELETE</i>
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
